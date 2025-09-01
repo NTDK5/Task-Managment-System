@@ -7,6 +7,16 @@ interface UserTaskChartProps {
 	data: UserTaskData[];
 }
 
+interface TooltipProps {
+	active?: boolean;
+	payload?: Array<{
+		name: string;
+		value: number;
+		color: string;
+	}>;
+	label?: string;
+}
+
 const UserTaskChart: React.FC<UserTaskChartProps> = ({ data }) => {
 	const chartData = data.map(user => ({
 		name: user.userName,
@@ -17,12 +27,12 @@ const UserTaskChart: React.FC<UserTaskChartProps> = ({ data }) => {
 		'Completion Rate': user.completionRate
 	}));
 
-	const CustomTooltip = ({ active, payload, label }: any) => {
+	const CustomTooltip: React.FC<TooltipProps> = ({ active, payload, label }) => {
 		if (active && payload && payload.length) {
 			return (
 				<div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
 					<p className="font-semibold">{label}</p>
-					{payload.map((entry: any, index: number) => (
+					{payload.map((entry, index) => (
 						<p key={index} style={{ color: entry.color }}>
 							{entry.name}: {entry.value}
 							{entry.name === 'Completion Rate' ? '%' : ''}
