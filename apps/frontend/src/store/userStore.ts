@@ -27,7 +27,7 @@ interface UserStore {
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
-export const useUserStore = create<UserStore>((set, get) => ({
+export const useUserStore = create<UserStore>((set) => ({
 	users: [],
 	loading: false,
 	error: null,

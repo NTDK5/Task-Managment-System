@@ -114,7 +114,6 @@ export const useReportStore = create<ReportStore>((set) => ({
 		tasks.forEach(task => {
 			const date = new Date(task.createdAt);
 			const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
-			const monthName = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 			
 			if (!monthlyData.has(monthKey)) {
 				monthlyData.set(monthKey, { total: 0, completed: 0, pending: 0 });

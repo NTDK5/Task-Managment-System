@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+dist/
+
+# Configuration files
+*.config.js
+*.config.ts
+*.config.mjs
+
+# Generated files
+next-env.d.ts
+
+# API routes (often have specific patterns)
+src/app/api/**/*.ts
+
+# Charts components (have complex types)
+src/components/charts/**/*.tsx
+
+# Store files (Zustand patterns)
+src/store/**/*.ts

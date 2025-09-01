@@ -8,12 +8,23 @@ interface TaskStatusChartProps {
 	data: TaskStatusData[];
 }
 
+interface TooltipProps {
+	active?: boolean;
+	payload?: Array<{
+		payload: {
+			status: string;
+			count: number;
+			percentage: number;
+		};
+	}>;
+}
+
 const COLORS = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
 
 const TaskStatusChart: React.FC<TaskStatusChartProps> = ({ data }) => {
 	const { t } = useTranslation('common');
 	
-	const formatStatus = (status: any) => {
+	const formatStatus = (status: string): string => {
 		// Ensure status is a string before calling replace
 		if (typeof status !== 'string') {
 			return t('common.unknown');
@@ -21,7 +32,7 @@ const TaskStatusChart: React.FC<TaskStatusChartProps> = ({ data }) => {
 		return t(`status.${status}`);
 	};
 
-	const CustomTooltip = ({ active, payload }: any) => {
+	const CustomTooltip: React.FC<TooltipProps> = ({ active, payload }) => {
 		if (active && payload && payload.length) {
 			const data = payload[0].payload;
 			return (

@@ -7,13 +7,23 @@ interface MonthlyTrendChartProps {
 	data: MonthlyTaskData[];
 }
 
+interface TooltipProps {
+	active?: boolean;
+	payload?: Array<{
+		name: string;
+		value: number;
+		color: string;
+	}>;
+	label?: string;
+}
+
 const MonthlyTrendChart: React.FC<MonthlyTrendChartProps> = ({ data }) => {
-	const CustomTooltip = ({ active, payload, label }: any) => {
+	const CustomTooltip: React.FC<TooltipProps> = ({ active, payload, label }) => {
 		if (active && payload && payload.length) {
 			return (
 				<div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
 					<p className="font-semibold">{label}</p>
-					{payload.map((entry: any, index: number) => (
+					{payload.map((entry, index) => (
 						<p key={index} style={{ color: entry.color }}>
 							{entry.name}: {entry.value}
 						</p>
